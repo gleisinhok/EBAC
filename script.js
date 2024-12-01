@@ -1,17 +1,15 @@
-const form = document.getElementById("form-verificacao");
+$(document).ready(function () {
+    $('form').on('submit', function (e) {
+        e.preventDefault();
 
-function verificaNumero(numeroA, numeroB) {
-    return numeroB > numeroA;
-}
+        const tarefa = $('input').val();
+        const novaTarefa = $(`<li>${tarefa}</li>`)
+        $(novaTarefa).appendTo('ul');
 
-form.addEventListener('submit', function(e){
+        $('input').val('')
+    });
 
-    const numeroA = document.getElementById("numeroA");
-    const numeroB = document.getElementById("numeroB");
-
-    if (!verificaNumero(numeroA.value, numeroB.value)) {
-        alert("O número B não é maior que o número A");
-    } else {
-        alert("O número B é maior que o número A");
-    }
-})
+    $('.lista_tarefas ul').on('click', 'li', function () {
+        $(this).toggleClass('riscado');
+    });
+});
